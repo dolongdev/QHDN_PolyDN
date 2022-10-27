@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/page/layout-home.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Phòng Quan Hệ Doanh Nghiệp - FPT Polytechnic Đà Nẵng - Giới Thiệu</title>
+</head>
+<body>
+    <div layout:fragment = "content">
+      <div th:replace="/page/fragments/header :: header"></div>
+
+      <div th:replace="/page/fragments/about-content :: about-content"></div>
+
+      <div th:replace="/page/fragments/contact-form :: contact-form"></div>
+    </div>
+</body>
+</html>

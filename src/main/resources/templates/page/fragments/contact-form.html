@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- contact Start -->
+    <div class="container-fluid bg-registration py-5" style="margin: 90px 0;" th:fragment="contact-form">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-5 mb-lg-0">
+                    <div class="mb-4">
+                        <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Bạn Cần Hỗ Trợ?</h5>
+                        <h1 class="text-white">Giải Đáp Thắc Mắc Sinh Viên</h1>
+                    </div>
+                    <p class="text-white">Phòng Quan Hệ Doanh Nghiệp chỉ hỗ trợ các vấn đề sau</p>
+                    <ul class="list-inline text-white m-0">
+                        <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Vấn đề liên quan đến thực tập</li>
+                        <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Vấn đề thời hạn và cách thực hiện báo
+                            cáo thực tập
+                        </li>
+                        <li class="py-2"><i class="fa fa-check text-primary mr-3"></i>Gợi ý nơi thực tập cho sinh viên</li>
+                    </ul>
+                </div>
+                <div class="col-lg-5">
+                    <div class="card border-0">
+                        <div class="card-header bg-light text-center p-4">
+                            <h1 class="m-0">Thông tin</h1>
+                        </div>
+                        <div class="card-body rounded-bottom bg-primary p-5">
+                            <form>
+                                <div class="form-group">
+                                    <input type="email" class="form-control border-0 p-4" placeholder="Email"
+                                           required="required"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control border-0 p-4" placeholder="Số điện thoại"
+                                           required="required"/>
+                                </div>
+                                <div class="form-group">
+                                    <select class="custom-select border-0 px-4" style="height: 47px;">
+                                        <option selected>Chuyên nghành</option>
+                                        <option value="1">Ứng Dụng Phần Mềm</option>
+                                        <option value="2">Thiết Kế Đồ Họa</option>
+                                        <option value="3">Lập Trình Web</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <button class="btn btn-dark btn-block border-0 py-3" type="submit">Gửi Thông Tin
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contact End -->
+</body>
+</html>

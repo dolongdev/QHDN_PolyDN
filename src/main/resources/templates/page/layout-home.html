@@ -28,11 +28,9 @@
 
     <div th:replace="/page/fragments/navbar :: navbar"></div>
 
-    <div th:replace="/page/fragments/carousel :: carousel"></div>
-
-    <div th:replace="/page/fragments/category :: category"></div>
-
-    <div th:replace="/page/fragments/courses :: courses"></div>
+    <!-- content -->
+    <div layout:fragment = "content"></div>
+    <!-- End Content -->
 
     <div th:replace="/page/fragments/footer :: footer"></div>
 
