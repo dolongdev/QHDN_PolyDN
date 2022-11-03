@@ -7,8 +7,6 @@ import com.qhdn.poly.repository.UserRepo;
 import com.qhdn.poly.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -82,14 +80,14 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username){
-        User user = this.userRepo.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found!!"));
-
-        return new org.springframework.security.core.userdetails
-                .User(user.getEmail(), user.getPassword(), new ArrayList<>());
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String username){
+//        User user = this.userRepo.findByEmail(username)
+//                .orElseThrow(() -> new UsernameNotFoundException("User not found!!"));
+//
+//        return new org.springframework.security.core.userdetails
+//                .User(user.getEmail(), user.getPassword(), new ArrayList<>());
+//    }
 
 
     private User dtoToUser(UserDto userDto){
