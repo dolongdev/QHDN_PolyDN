@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/administration/layout-admin.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Account</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div th:if="${flag}" class="card-header">
+                    Tạo mới tài khoản
+                </div>
+                <div th:if="${!flag}" class="card-header">
+                    Cập nhật tài khoản
+                </div>
+                <div class="card-body card-block">
+                    <div class="row">
+                        <form th:action="@{/addUser}" th:object="${userDto}" method="post">
+                            <input type="text" id="id" name="id" class="form-control" th:field="*{id}"
+                                   hidden>
+                            <div class="form-group">
+                                <label for="email" class=" form-control-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-control" th:field="*{email}"
+                                       required>
+                                <span class="help-block" hidden></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="username" class=" form-control-label">Username</label>
+                                <input type="text" id="username" name="username" class="form-control" th:field="*{name}"
+                                       required>
+                                <span class="help-block" hidden> </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class=" form-control-label">Password</label>
+                                <input type="password" id="password" name="password" class="form-control"
+                                       th:field="*{password}" required>
+                                <span class="help-block" hidden> </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="about" class=" form-control-label">About</label>
+                                <textarea id="about" name="about" class="form-control" th:field="*{about}"></textarea>
+                                <span class="help-block" hidden> </span>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fa fa-ban"></i> Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

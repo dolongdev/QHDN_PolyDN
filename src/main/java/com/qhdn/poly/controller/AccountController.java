@@ -19,12 +19,7 @@ public class AccountController {
 
     @GetMapping("/accounts")
     public String accountList(Model model){
-        return "/admin/account-list";
+        return "/administration/account-list";
     }
 
-    @GetMapping("/addOrEditAcc")
-    public String addOrEdit(Model model){
-
-        return "/admin/addOrEditAcc";
-    }
 }
