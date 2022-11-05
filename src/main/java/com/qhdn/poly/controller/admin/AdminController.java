@@ -18,11 +18,11 @@ public class AdminController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/admin")
+    @GetMapping("/administration")
     public String getAdmin(Model model){
         List<UserDto> users = this.userService.getAllUsers();
         model.addAttribute("users", users);
-        return "administration/account-list";
+        return "/page-admin/index";
     }
 
 //    @GetMapping("/addOrEditAcc")
@@ -48,14 +48,14 @@ public class AdminController {
         return "/administration/addOrEditAcc";
     }
 
-    @PostMapping("/addUser")
-    public String addUser(Model model, @ModelAttribute("userDto") UserDto userDto, BindingResult result){
-        if (result.hasErrors()){
-            return "/error";
-        }
-        UserDto user = this.userService.createUser(userDto);
-        return "redirect:/admin";
-    }
+//    @PostMapping("/addUser")
+//    public String addUser(Model model, @ModelAttribute("userDto") UserDto userDto, BindingResult result){
+//        if (result.hasErrors()){
+//            return "/error";
+//        }
+//        UserDto user = this.userService.createUser(userDto);
+//        return "redirect:/admin";
+//    }
 
     @PostMapping("/update/{id}")
     public String updateUser(Model model
