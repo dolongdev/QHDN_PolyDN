@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
 
@@ -9,9 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Buttons</title>
+    <title>Post Manager</title>
 
     <!-- Custom fonts for this template-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="/administration-stt/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -19,6 +22,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/administration-stt/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/administration-stt/css/input.css" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -64,7 +68,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Content<sup>2</sup></div>
             </a>
 
             <!-- Divider -->
@@ -97,9 +101,9 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Components:</h6>
 
-                        <a class="collapse-item" href="users.html">Users</a>
-                        <a class="collapse-item active" href="posts.html">Posts</a>
-                        <a class="collapse-item" href="comments.html">Comments</a>
+                        <a class="collapse-item" th:href="@{/administration/users}">User</a>
+                        <a class="collapse-item" th:href="@{/administration/posts}">Posts</a>
+                        <a class="collapse-item" th:href="@{/administration/comments}">Comment</a>
                     </div>
                 </div>
             </li>
@@ -337,14 +341,45 @@
 
 
                     <!--Bootstrap classes arrange web page components into columns and rows in a grid -->
-                    <div class="row justify-content-md-center">
-                        <div class="col-md-12 col-lg-8">
-                            <h1 class="h2 mb-4">Create the posts</h1>
+                    <div class="row">
+                        <div class="col-lg-8 border border-white" style="background-color:white;">
+                            <div class="form__group field mt-3">
+                                <input type="text" class="form__field" placeholder="Title?" name="title" />
+                                <label for="title" class="form__label">Title</label>
+                            </div>
+                            <h5 class="mb-4 mt-5">Write your text!</h5>
                             <!-- <label>Describe the issue in detail</label> -->
-                            <div class="form-group">
+                            <div class="form-group mt-3">
                                 <textarea id="editor"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                        </div>
+                        <script>
+                            function chooseFile(fileInput) {
+                                if (fileInput.files && fileInput.files[0]) {
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                        $('#image').attr('src', e.target.result);
+                                    }
+                                    reader.readAsDataURL(fileInput.files[0]);
+                                }
+
+                            }
+                        </script>
+                        <div class="col-sm-3 border border-white" style="background-color:white;margin-left: 50px;">
+                            <div class="form-group mt-5 text-center">
+                                <h5>Người đăng: neyuQisme</h5>
+                                <h5>Ngày đăng: <div id="date"></div>
+                                </h5>
+                            </div>
+                            <div class="text-center">
+                                <div class="mt-5">
+                                    <img src="" alt="" id="image" width="200" height="200">
+                                    <input type="file" name="" class="mt-5" id="imageFile" onchange="chooseFile(this)"
+                                        accept="image/gif,image/jpeg,image/png">
+                                </div>
+
+                            </div>
                         </div>
                     </div>
 
@@ -416,7 +451,11 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/administration-stt/js/sb-admin-2.min.js"></script>
-
+    <script>
+        var h1 = document.getElementById("date");
+        let today = new Date().toLocaleDateString();
+        h1.innerHTML = today;
+    </script>
 </body>
 
 </html>
