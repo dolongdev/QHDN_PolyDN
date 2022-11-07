@@ -1,100 +1,101 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org"
-      xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/administration/layout-admin.html}">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{/administration/layout-admin.html}">
+
 <head>
     <meta charset="UTF-8">
     <title>Account Management</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
+
 <body>
-<div layout:fragment="content">
-    <div class="row">
-        <div class="col-md-12">
-            <!-- DATA TABLE -->
-            <h3 class="title-5 m-b-35">data table</h3>
-            <div class="table-data__tool">
-                <div class="table-data__tool-left">
-                    <div class="rs-select2--light rs-select2--sm">
-                        <select class="js-select2" name="time">
-                            <option selected="selected">Today</option>
-                            <option value="">3 Days</option>
-                            <option value="">1 Week</option>
-                        </select>
-                        <div class="dropDownSelect2"></div>
+    <div layout:fragment="content">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- DATA TABLE -->
+                <h3 class="title-5 m-b-35">data table</h3>
+                <div class="table-data__tool">
+                    <div class="table-data__tool-left">
+                        <div class="rs-select2--light rs-select2--sm">
+                            <select class="js-select2" name="time">
+                                <option selected="selected">Today</option>
+                                <option value="">3 Days</option>
+                                <option value="">1 Week</option>
+                            </select>
+                            <div class="dropDownSelect2"></div>
+                        </div>
+                        <button class="au-btn-filter">
+                            <i class="zmdi zmdi-filter-list"></i>filters
+                        </button>
                     </div>
-                    <button class="au-btn-filter">
-                        <i class="zmdi zmdi-filter-list"></i>filters
-                    </button>
+                    <div class="table-data__tool-right">
+                        <a th:href="@{/addOrEditAcc}" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                            <i class="zmdi zmdi-plus"></i>Thêm
+                        </a>
+                    </div>
                 </div>
-                <div class="table-data__tool-right">
-                    <a th:href="@{/addOrEditAcc}" class="au-btn au-btn-icon au-btn--green au-btn--small">
-                        <i class="zmdi zmdi-plus"></i>Thêm
-                    </a>
+                <div class="table-responsive table-responsive-data2">
+                    <table class="table table-data2">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox" />
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </th>
+                                <th>ID</th>
+                                <th>Email</th>
+                                <th>Username</th>
+                                <th>About</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody th:each="u : ${users}">
+                            <tr class="tr-shadow">
+                                <td>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox" />
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </td>
+                                <td th:text="${u.id}"></td>
+                                <td>
+                                    <span class="block-email" th:text="${u.email}"></span>
+                                </td>
+                                <td class="desc" th:text="${u.name}"></td>
+                                <td th:text="${u.about}"></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <div class="table-data-feature">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                            <i class="zmdi zmdi-mail-send"></i>
+                                        </button>
+                                        <a th:href="@{/update/{id}(id=${u.id})}" class="item" data-toggle="tooltip"
+                                            data-placement="top" title="Edit">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </a>
+                                        <a th:href="@{/delete/{id}(id=${u.id})}" class="item" data-toggle="tooltip"
+                                            data-placement="top" title="Delete">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </a>
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                            <i class="zmdi zmdi-more"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="spacer"></tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-            <div class="table-responsive table-responsive-data2">
-                <table class="table table-data2">
-                    <thead>
-                    <tr>
-                        <th>
-                            <label class="au-checkbox">
-                                <input type="checkbox"/>
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </th>
-                        <th>ID</th>
-                        <th>Email</th>
-                        <th>Username</th>
-                        <th>About</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody th:each="u : ${users}">
-                    <tr class="tr-shadow">
-                        <td>
-                            <label class="au-checkbox">
-                                <input type="checkbox"/>
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </td>
-                        <td th:text="${u.id}"></td>
-                        <td>
-                            <span class="block-email" th:text="${u.email}"></span>
-                        </td>
-                        <td class="desc" th:text="${u.name}"></td>
-                        <td th:text="${u.about}"></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <div class="table-data-feature">
-                                <button class="item" data-toggle="tooltip" data-placement="top"
-                                        title="Send">
-                                    <i class="zmdi zmdi-mail-send"></i>
-                                </button>
-                                <a th:href="@{/update/{id}(id=${u.id})}" class="item" data-toggle="tooltip"
-                                   data-placement="top"
-                                   title="Edit">
-                                    <i class="zmdi zmdi-edit"></i>
-                                </a>
-                                <a th:href="@{/delete/{id}(id=${u.id})}" class="item" data-toggle="tooltip"
-                                        data-placement="top"
-                                        title="Delete">
-                                    <i class="zmdi zmdi-delete"></i>
-                                </a>
-                                <button class="item" data-toggle="tooltip" data-placement="top"
-                                        title="More">
-                                    <i class="zmdi zmdi-more"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="spacer"></tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
-</div>
 
 </body>
+
 </html>
